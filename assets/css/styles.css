@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    background-color: #b2ece7;
+}
+
+.insect {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    position: absolute;
+}
+
+.insect:hover {
+    width: 55px;
+    height: 55px;
+}
+
+#target{
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 194, 0, 0.5);
+    position: absolute;
+}
