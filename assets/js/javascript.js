@@ -1,6 +1,27 @@
 const insectContainer = document.getElementById("insectContainer");
 const target = document.getElementById("target");
 
+///////////////////////////////////////////
+// Spawn Insect every 1s
+
+function spawnNewInsect() {
+   /* var newDiv = $('<div></div>'); // Create a new div element
+    newDiv.addClass('insect'); // Add the class "theDiv" to the new div
+    $('body').append(newDiv); // Append the new div to the body of the HTML document*/
+
+    var insect = new Insect('a',1,1,1,1,'black');
+    console.log('created new insect'+insect);
+}
+
+// Function to spawn a new div every 1 second
+function spawnDivEverySecond() {
+    setInterval(spawnNewInsect, 1000);
+}
+
+spawnDivEverySecond();
+
+///////////////////////////////////////////
+
 class Insect {
     constructor(name, health, damage, score, speed, preview) {
         this.name = name;

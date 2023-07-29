@@ -11,7 +11,8 @@ body {
 .insect {
     width: 50px;
     height: 50px;
-    background-color: black;
+    border: black 1px solid;
+    background-color: #129ea2;
     position: absolute;
 }
 
