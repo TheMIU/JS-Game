@@ -3,22 +3,33 @@ const target = document.getElementById("target");
 
 ///////////////////////////////////////////
 // Spawn Insect every 1s
-
-function spawnNewInsect() {
-   /* var newDiv = $('<div></div>'); // Create a new div element
-    newDiv.addClass('insect'); // Add the class "theDiv" to the new div
-    $('body').append(newDiv); // Append the new div to the body of the HTML document*/
-
-    var insect = new Insect('a',1,1,1,1,'black');
-    console.log('created new insect'+insect);
-}
+let insectCount =0;
+spawnDivEverySecond();
 
 // Function to spawn a new div every 1 second
 function spawnDivEverySecond() {
     setInterval(spawnNewInsect, 1000);
 }
 
-spawnDivEverySecond();
+function spawnNewInsect() {
+    console.log('created new insect');
+
+    const randomColor = getRandomColor();
+    const insect = new Insect("Insect" + (insectCount + 1), 100, 10, 0, 5, randomColor);
+    insectContainer.appendChild(insect.preview);
+}
+
+// Function to generate a random color
+function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+
 
 ///////////////////////////////////////////
 
@@ -63,22 +74,5 @@ class Insect {
         this.preview.style.left = randomX + "px";
         this.preview.style.top = randomY + "px";
     }
-}
-
-// Generate and append 20 random-colored divs to the container
-for (let i = 0; i < 20; i++) {
-    const randomColor = getRandomColor();
-    const insect = new Insect("Insect" + (i + 1), 100, 10, 0, 5, randomColor);
-    insectContainer.appendChild(insect.preview);
-}
-
-// Function to generate a random color
-function getRandomColor() {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
 }
 
