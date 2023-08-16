@@ -2,8 +2,9 @@ const insectContainer = document.getElementById("insectContainer");
 const target = document.getElementById("target");
 
 ///////////////////////////////////////////
+
 // Spawn Insect every 1s
-let insectCount =0;
+let insectCount = 0;
 spawnDivEverySecond();
 
 // Function to spawn a new div every 1 second
@@ -16,7 +17,23 @@ function spawnNewInsect() {
 
     const randomColor = getRandomColor();
     const insect = new Insect("Insect" + (insectCount + 1), 100, 10, 0, 5, randomColor);
+
+    // Animate the div to the center
+    insect.preview.animate(getCenter(insect.preview), 6000);
+
     insectContainer.appendChild(insect.preview);
+}
+
+function getCenter(div) {
+    // Calculate the center coordinates of the container
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const divWidth = div.clientWidth;
+    const divHeight = div.clientHeight;
+    const centerX = (viewportWidth - divWidth) / 2;
+    const centerY = (viewportHeight - divHeight) / 2;
+
+    return {left: centerX + "px", top: centerY + "px"};
 }
 
 // Function to generate a random color
@@ -28,8 +45,6 @@ function getRandomColor() {
     }
     return color;
 }
-
-
 
 ///////////////////////////////////////////
 
@@ -56,8 +71,8 @@ class Insect {
         return div;
     }
 
+    // Delete div if mouse clicked
     deleteOnClick() {
-        // Delete div if mouse clicked
         this.preview.remove();
     }
 
@@ -75,4 +90,3 @@ class Insect {
         this.preview.style.top = randomY + "px";
     }
 }
-
