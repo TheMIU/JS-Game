@@ -1,9 +1,6 @@
 const insectContainer = document.getElementById("insectContainer");
-const target = document.getElementById("target");
 
 ///////////////////////////////////////////
-
-// Spawn Insect every 1s
 let insectCount = 0;
 spawnDivEverySecond();
 
@@ -22,18 +19,6 @@ function spawnNewInsect() {
     insect.preview.animate(getCenter(insect.preview), 6000);
 
     insectContainer.appendChild(insect.preview);
-}
-
-function getCenter(div) {
-    // Calculate the center coordinates of the container
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    const divWidth = div.clientWidth;
-    const divHeight = div.clientHeight;
-    const centerX = (viewportWidth - divWidth) / 2;
-    const centerY = (viewportHeight - divHeight) / 2;
-
-    return {left: centerX + "px", top: centerY + "px"};
 }
 
 // Function to generate a random color
@@ -64,22 +49,28 @@ class Insect {
         div.classList.add("insect");
         div.style.backgroundColor = preview;
 
+        // Delete div if mouse clicked
         div.addEventListener("click", () => {
-            this.deleteOnClick();
+            this.deleteDiv();
         });
+
+        // Delete div is in center (animation finished)
+        setTimeout(() => {
+            this.preview.remove();
+        }, 6000);
 
         return div;
     }
 
-    // Delete div if mouse clicked
-    deleteOnClick() {
+    // Delete div
+    deleteDiv() {
         this.preview.remove();
     }
 
     randomizePosition() {
         // Set random position within the specified area (width: 500px, height: 400px)
-        const viewportWidth = window.innerWidth - 100;
-        const viewportHeight = window.innerHeight - 100;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
         const previewWidth = this.preview.offsetWidth;
         const previewHeight = this.preview.offsetHeight;
 
@@ -90,3 +81,16 @@ class Insect {
         this.preview.style.top = randomY + "px";
     }
 }
+
+function getCenter(div) {
+    // Calculate the center coordinates of the container
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const divWidth = div.clientWidth;
+    const divHeight = div.clientHeight;
+    const centerX = (viewportWidth - divWidth) / 2;
+    const centerY = (viewportHeight - divHeight) / 2;
+
+    return {left: centerX + "px", top: centerY + "px"};
+}
+
