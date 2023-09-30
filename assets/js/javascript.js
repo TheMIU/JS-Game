@@ -52,12 +52,17 @@ class Insect {
         // Delete div if mouse clicked
         div.addEventListener("click", () => {
             this.deleteDiv();
+            score++;
+            updateStatus();
         });
 
         // Delete div is in center (animation finished)
         setTimeout(() => {
+            lives--;
             this.preview.remove();
         }, 6000);
+
+        updateStatus();
 
         return div;
     }
@@ -71,11 +76,12 @@ class Insect {
         // Set random position within the specified area (width: 500px, height: 400px)
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
-        const previewWidth = this.preview.offsetWidth;
-        const previewHeight = this.preview.offsetHeight;
 
-        const randomX = Math.floor(Math.random() * (viewportWidth - previewWidth));
-        const randomY = Math.floor(Math.random() * (viewportHeight - previewHeight));
+        const randomX = Math.floor(Math.random() * (viewportWidth));
+        const randomY = Math.floor(Math.random() * (viewportHeight));
+
+        console.log(viewportWidth + " , " + viewportHeight);
+        console.log(randomX + " , " + randomY);
 
         this.preview.style.left = randomX + "px";
         this.preview.style.top = randomY + "px";
@@ -94,3 +100,15 @@ function getCenter(div) {
     return {left: centerX + "px", top: centerY + "px"};
 }
 
+///////////////////////////////////////////
+// Update score and lives
+const scoreElement = document.getElementById("score");
+const livesElement = document.getElementById("lives");
+
+let score = 0;
+let lives = 5;
+
+function updateStatus() {
+    scoreElement.textContent = String(score);
+    livesElement.textContent = String(lives);
+}

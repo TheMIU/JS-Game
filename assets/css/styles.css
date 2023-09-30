@@ -21,7 +21,7 @@ body {
     height: 55px;
 }
 
-.target{
+.target {
     width: 50px;
     height: 50px;
     background-color: red;
@@ -31,4 +31,20 @@ body {
     left: 0;
     right: 0;
     margin: auto;
+}
+
+#status {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    z-index: 100;
+}
+
+/*Hide scrollbar*/
+::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    display: none;
 }
