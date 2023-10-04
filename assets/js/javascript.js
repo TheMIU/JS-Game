@@ -5,6 +5,7 @@ let enemies = 0;
 
 // Function to spawn a new div every 1 second
 let spawner;
+
 function spawnDivEverySecond() {
     spawner = setInterval(spawnNewEnemy, 1000);
 }
@@ -13,7 +14,7 @@ function spawnNewEnemy() {
     console.log('created new enemy');
 
     const randomColor = getRandomColor();
-    const enemy = new Enemy("Enemy" + (enemies + 1), 100, 10, 0, 5, randomColor);
+    const enemy = new Enemy(randomColor);
 
     // Animate the div to the center
     enemy.preview.animate(getCenter(enemy.preview), 6000);
@@ -34,13 +35,8 @@ function getRandomColor() {
 ///////////////////////////////////////////
 
 class Enemy {
-    constructor(name, health, damage, score, speed, preview) {
-        this.name = name;
-        this.health = health;
-        this.damage = damage;
-        this.score = score;
-        this.speed = speed;
-        this.preview = this.createPreviewDiv(preview);
+    constructor(color) {
+        this.preview = this.createPreviewDiv(color);
         this.randomizePosition(); // Set random initial position
     }
 
@@ -50,7 +46,7 @@ class Enemy {
         div.style.backgroundColor = preview;
 
         // Delete div if mouse clicked
-        div.addEventListener("click", () => {
+        div.addEventListener("mouseover", () => {
             this.deleteDiv();
             score++;
             updateStatus();
@@ -73,19 +69,20 @@ class Enemy {
     }
 
     randomizePosition() {
-        // Set random position within the specified area (width: 500px, height: 400px)
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        const randomX = Math.floor(Math.random() * (viewportWidth));
-        const randomY = Math.floor(Math.random() * (viewportHeight));
+        const xValues = [0,viewportWidth-100];
+        const yValues = [0,viewportHeight-100];
 
+        let randomIndexX = Math.floor(Math.random() * xValues.length);
+        let randomIndexY = Math.floor(Math.random() * yValues.length);
 
-        console.log(viewportWidth + " , " + viewportHeight);
-        console.log(randomX + " , " + randomY);
+        let xPosition = xValues[randomIndexX];
+        let yPosition = yValues[randomIndexY];
 
-        this.preview.style.left = randomX + "px";
-        this.preview.style.top = randomY + "px";
+        this.preview.style.left = xPosition + "px";
+        this.preview.style.top = yPosition + "px";
     }
 }
 
@@ -97,6 +94,8 @@ function getCenter(div) {
     const divHeight = div.clientHeight;
     const centerX = (viewportWidth - divWidth) / 2;
     const centerY = (viewportHeight - divHeight) / 2;
+
+    //console.log(centerX+" , "+centerY)
 
     return {left: centerX + "px", top: centerY + "px"};
 }

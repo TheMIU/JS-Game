@@ -20,15 +20,16 @@ btnPlay.addEventListener("click", function () {
 
 // restart
 btnRestart.addEventListener("click", function () {
+    score = 0;
+    lives = 5;
 
-    // clear all divs named"enemy" in DOM
+    // clear all divs named "enemy" in DOM
     const enemies = document.querySelectorAll(".enemy");
     enemies.forEach(function (enemy) {
         enemy.remove();
     });
 
-    score = 0;
-    lives = 5;
+    clearInterval(spawner);
     spawnDivEverySecond();
     start.style.display = "none";
     game.style.display = "block";
