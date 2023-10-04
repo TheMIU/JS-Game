@@ -1,24 +1,24 @@
-const insectContainer = document.getElementById("insectContainer");
+const enemyContainer = document.getElementById("enemyContainer");
 
 ///////////////////////////////////////////
-let insectCount = 0;
+let enemies = 0;
 
 // Function to spawn a new div every 1 second
 let spawner;
 function spawnDivEverySecond() {
-    spawner = setInterval(spawnNewInsect, 1000);
+    spawner = setInterval(spawnNewEnemy, 1000);
 }
 
-function spawnNewInsect() {
-    console.log('created new insect');
+function spawnNewEnemy() {
+    console.log('created new enemy');
 
     const randomColor = getRandomColor();
-    const insect = new Insect("Insect" + (insectCount + 1), 100, 10, 0, 5, randomColor);
+    const enemy = new Enemy("Enemy" + (enemies + 1), 100, 10, 0, 5, randomColor);
 
     // Animate the div to the center
-    insect.preview.animate(getCenter(insect.preview), 6000);
+    enemy.preview.animate(getCenter(enemy.preview), 6000);
 
-    insectContainer.appendChild(insect.preview);
+    enemyContainer.appendChild(enemy.preview);
 }
 
 // Function to generate a random color
@@ -33,7 +33,7 @@ function getRandomColor() {
 
 ///////////////////////////////////////////
 
-class Insect {
+class Enemy {
     constructor(name, health, damage, score, speed, preview) {
         this.name = name;
         this.health = health;
@@ -46,7 +46,7 @@ class Insect {
 
     createPreviewDiv(preview) {
         const div = document.createElement("div");
-        div.classList.add("insect");
+        div.classList.add("enemy");
         div.style.backgroundColor = preview;
 
         // Delete div if mouse clicked

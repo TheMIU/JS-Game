@@ -21,10 +21,10 @@ btnPlay.addEventListener("click", function () {
 // restart
 btnRestart.addEventListener("click", function () {
 
-    // clear all divs named"insect" in DOM
-    const insects = document.querySelectorAll(".insect");
-    insects.forEach(function (insect) {
-        insect.remove();
+    // clear all divs named"enemy" in DOM
+    const enemies = document.querySelectorAll(".enemy");
+    enemies.forEach(function (enemy) {
+        enemy.remove();
     });
 
     score = 0;
