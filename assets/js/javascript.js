@@ -4,12 +4,13 @@ const insectContainer = document.getElementById("insectContainer");
 let insectCount = 0;
 
 // Function to spawn a new div every 1 second
+let spawner;
 function spawnDivEverySecond() {
-    setInterval(spawnNewInsect, 1000);
+    spawner = setInterval(spawnNewInsect, 1000);
 }
 
 function spawnNewInsect() {
-    // console.log('created new insect');
+    console.log('created new insect');
 
     const randomColor = getRandomColor();
     const insect = new Insect("Insect" + (insectCount + 1), 100, 10, 0, 5, randomColor);
@@ -79,8 +80,9 @@ class Insect {
         const randomX = Math.floor(Math.random() * (viewportWidth));
         const randomY = Math.floor(Math.random() * (viewportHeight));
 
-        /* console.log(viewportWidth + " , " + viewportHeight);
-         console.log(randomX + " , " + randomY);*/
+
+        console.log(viewportWidth + " , " + viewportHeight);
+        console.log(randomX + " , " + randomY);
 
         this.preview.style.left = randomX + "px";
         this.preview.style.top = randomY + "px";
@@ -108,21 +110,18 @@ let score = 0;
 let lives = 5;
 
 function updateStatus() {
-    if (isGameStarted) {
-        checkGameStatus();
-    }
+    checkGameStatus();
     scoreElement.textContent = String(score);
     livesElement.textContent = String(lives);
 }
 
 // player fail
-
-
 function checkGameStatus() {
     console.log(lives);
     if (lives <= 0) {
         console.log("failed");
-        isGameStarted = false;
+        clearInterval(spawner);
+
         start.style.display = "none";
         game.style.display = "none";
         failed.style.display = "block";

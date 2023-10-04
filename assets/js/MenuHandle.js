@@ -3,8 +3,7 @@ let game = document.getElementById("game");
 let failed = document.getElementById("failed");
 let btnPlay = document.getElementById("btnPlay");
 let btnRestart = document.getElementById(`btnRestart`);
-
-let isGameStarted = false;
+let btnBackToMenu = document.getElementById(`btnBackToMenu`);
 
 // begin
 start.style.display = "block";
@@ -13,10 +12,7 @@ failed.style.display = "none";
 
 // start
 btnPlay.addEventListener("click", function () {
-    isGameStarted = true;
-    if (isGameStarted) {
-        spawnDivEverySecond();
-    }
+    spawnDivEverySecond();
     start.style.display = "none";
     game.style.display = "block";
     failed.style.display = "none";
@@ -24,5 +20,21 @@ btnPlay.addEventListener("click", function () {
 
 // restart
 btnRestart.addEventListener("click", function () {
+
+    // clear all divs named"insect" in DOM
+    const insects = document.querySelectorAll(".insect");
+    insects.forEach(function (insect) {
+        insect.remove();
+    });
+
+    score = 0;
+    lives = 5;
+    spawnDivEverySecond();
+    start.style.display = "none";
+    game.style.display = "block";
+    failed.style.display = "none";
+});
+
+btnBackToMenu.addEventListener("click", function () {
     location.reload();
 });
