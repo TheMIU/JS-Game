@@ -12,7 +12,8 @@ failed.style.display = "none";
 
 // start
 btnPlay.addEventListener("click", function () {
-    spawnDivEverySecond();
+    spawnDivEverySecond(1000);
+
     start.style.display = "none";
     game.style.display = "block";
     failed.style.display = "none";
@@ -20,22 +21,5 @@ btnPlay.addEventListener("click", function () {
 
 // restart
 btnRestart.addEventListener("click", function () {
-    score = 0;
-    lives = 5;
-
-    // clear all divs named "enemy" in DOM
-    const enemies = document.querySelectorAll(".enemy");
-    enemies.forEach(function (enemy) {
-        enemy.remove();
-    });
-
-    clearInterval(spawner);
-    spawnDivEverySecond();
-    start.style.display = "none";
-    game.style.display = "block";
-    failed.style.display = "none";
-});
-
-btnBackToMenu.addEventListener("click", function () {
     location.reload();
 });
