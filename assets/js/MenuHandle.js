@@ -12,7 +12,7 @@ failed.style.display = "none";
 
 // start
 btnPlay.addEventListener("click", function () {
-    spawnDivEverySecond(1000);
+    spawnDivEveryTimout(1000);
 
     start.style.display = "none";
     game.style.display = "block";

@@ -7,7 +7,7 @@ let enemies = 0;
 //spawn a new div every 'timeout' second
 let spawner;
 
-function spawnDivEverySecond(timeout) {
+function spawnDivEveryTimout(timeout) {
     if (spawner) {
         clearInterval(spawner);
     }
@@ -56,20 +56,6 @@ class Enemy {
             score++;
             updateStatus();
         });
-
-        /*// Delete div is in center (animation finished)
-        setTimeout(() => {
-            this.preview.remove();
-
-            // player fail
-            console.log("failed");
-            clearInterval(spawner);
-
-            start.style.display = "none";
-            game.style.display = "none";
-            failed.style.display = "block";
-
-        }, 6000);*/
 
         updateStatus();
 
@@ -125,64 +111,45 @@ function updateStatus() {
     scoreElement.textContent = String(score);
     levelElement.textContent = level;
     updateLevel();
-    updateDifficulty();
 }
 
 function updateLevel() {
     switch (true) {
         case score < 5:
             level = 'Level 1';
-            break;
-        case score < 10:
-            level = 'Level 2';
-            break;
-        case score < 15:
-            level = 'Level 3';
+            spawnDivEveryTimout(2000);
             break;
         case score < 20:
-            level = 'Level 4';
+            level = 'Level 2';
+            spawnDivEveryTimout(1000);
             break;
-        case score < 25:
+        case score < 50:
+            level = 'Level 3';
+            spawnDivEveryTimout(800);
+            break;
+        case score < 100:
+            level = 'Level 4';
+            spawnDivEveryTimout(500);
+            break;
+        case score < 500:
             level = 'Level 5';
+            spawnDivEveryTimout(300);
+            break;
+        case score < 1000:
+            level = 'Level 6';
+            spawnDivEveryTimout(200);
+            break;
+        case score < 2000:
+            level = 'Level 7';
+            spawnDivEveryTimout(100);
+            break;
+        case score < 3000:
+            level = 'Level 8';
+            spawnDivEveryTimout(50);
             break;
     }
 }
 
-function updateDifficulty() {
-    switch (true) {
-        case level === 'Level 1':
-            spawnDivEverySecond(2000);
-            break;
-        case score < 10:
-            level = 'Level 2';
-            spawnDivEverySecond(1000);
-            break;
-        case score < 15:
-            level = 'Level 3';
-            spawnDivEverySecond(800);
-            break;
-        case score < 20:
-            level = 'Level 4';
-            spawnDivEverySecond(500);
-            break;
-        case score < 25:
-            level = 'Level 5';
-            spawnDivEverySecond(300);
-            break;
-        case score < 50:
-            level = 'Level 6';
-            spawnDivEverySecond(200);
-            break;
-        case score < 100:
-            level = 'Level 7';
-            spawnDivEverySecond(100);
-            break;
-        case score < 200:
-            level = 'Level 8';
-            spawnDivEverySecond(50);
-            break;
-    }
-}
 
 ///////////
 function checkEnemyPosition() {
@@ -203,8 +170,6 @@ function checkEnemyPosition() {
             start.style.display = "none";
             game.style.display = "none";
             failed.style.display = "block";
-
-            return;
         }
     }
 
