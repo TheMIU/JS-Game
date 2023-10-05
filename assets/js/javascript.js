@@ -29,12 +29,12 @@ function spawnNewEnemy() {
 
 // Function to generate a random color
 function getRandomColor() {
-    const letters = "0123456789ABCDEF";
+    /*const letters = "0123456789ABCDEF";
     let color = "#";
     for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
     }
-    return color;
+    return color;*/
 }
 
 ///////////////////////////////////////////
@@ -52,6 +52,8 @@ class Enemy {
 
         // Delete div if mouse clicked
         div.addEventListener("mouseover", () => {
+            // change curser before delete (cursor: url('../images/SwordRed.png'), auto;)
+
             this.deleteDiv();
             score++;
             updateStatus();
@@ -108,9 +110,9 @@ let score = 0;
 let level = 'Level 1';
 
 function updateStatus() {
+    updateLevel();
     scoreElement.textContent = String(score);
     levelElement.textContent = level;
-    updateLevel();
 }
 
 function updateLevel() {
@@ -118,34 +120,42 @@ function updateLevel() {
         case score < 5:
             level = 'Level 1';
             spawnDivEveryTimout(2000);
+            levelElement.style.color="#ff0000";
             break;
         case score < 20:
             level = 'Level 2';
             spawnDivEveryTimout(1000);
+            levelElement.style.color="#ffb600";
             break;
         case score < 50:
             level = 'Level 3';
             spawnDivEveryTimout(800);
+            levelElement.style.color="#ff0000";
             break;
         case score < 100:
             level = 'Level 4';
             spawnDivEveryTimout(500);
+            levelElement.style.color="#ffb600";
             break;
         case score < 500:
             level = 'Level 5';
             spawnDivEveryTimout(300);
+            levelElement.style.color="#ff0000";
             break;
         case score < 1000:
             level = 'Level 6';
             spawnDivEveryTimout(200);
+            levelElement.style.color="#ffb600";
             break;
         case score < 2000:
             level = 'Level 7';
             spawnDivEveryTimout(100);
+            levelElement.style.color="#ff0000";
             break;
         case score < 3000:
             level = 'Level 8';
             spawnDivEveryTimout(50);
+            levelElement.style.color="#ffb600";
             break;
     }
 }
