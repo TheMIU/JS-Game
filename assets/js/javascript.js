@@ -1,8 +1,5 @@
-const enemyContainer = document.getElementById("enemyContainer");
-
 ///////////////////////////////////////////
-let enemies = 0;
-
+const enemyContainer = document.getElementById("enemyContainer");
 
 //spawn a new div every 'timeout' second
 let spawner;
@@ -18,8 +15,7 @@ function spawnDivEveryTimout(timeout) {
 function spawnNewEnemy() {
     console.log('created new enemy');
 
-    const randomColor = getRandomColor();
-    const enemy = new Enemy(randomColor);
+    const enemy = new Enemy();
 
     // Animate the div to the center
     enemy.preview.animate(getCenter(enemy.preview), 6000);
@@ -27,46 +23,26 @@ function spawnNewEnemy() {
     enemyContainer.appendChild(enemy.preview);
 }
 
-// Function to generate a random color
-function getRandomColor() {
-    /*const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;*/
-}
-
 ///////////////////////////////////////////
-
 class Enemy {
-    constructor(color) {
-        this.preview = this.createPreviewDiv(color);
+    constructor() {
+        this.preview = this.createPreviewDiv();
         this.randomizePosition(); // Set random initial position
     }
 
-    createPreviewDiv(preview) {
+    createPreviewDiv() {
         const div = document.createElement("div");
         div.classList.add("enemy");
-        div.style.backgroundColor = preview;
 
-        // Delete div if mouse clicked
+        // Delete div if mouse hovered
         div.addEventListener("mouseover", () => {
-            // change curser before delete (cursor: url('../images/SwordRed.png'), auto;)
-
-            this.deleteDiv();
+            this.preview.remove();
             score++;
             updateStatus();
         });
 
         updateStatus();
-
         return div;
-    }
-
-    // Delete div
-    deleteDiv() {
-        this.preview.remove();
     }
 
     randomizePosition() {
@@ -120,48 +96,50 @@ function updateLevel() {
         case score < 5:
             level = 'Level 1';
             spawnDivEveryTimout(2000);
-            levelElement.style.color="#ff0000";
+            levelElement.style.color = "#ff0000";
             break;
         case score < 20:
             level = 'Level 2';
             spawnDivEveryTimout(1000);
-            levelElement.style.color="#ffb600";
+            levelElement.style.color = "#ffb600";
             break;
         case score < 50:
             level = 'Level 3';
             spawnDivEveryTimout(800);
-            levelElement.style.color="#ff0000";
+            levelElement.style.color = "#ff0000";
             break;
         case score < 100:
             level = 'Level 4';
             spawnDivEveryTimout(500);
-            levelElement.style.color="#ffb600";
+            levelElement.style.color = "#ffb600";
             break;
         case score < 500:
             level = 'Level 5';
             spawnDivEveryTimout(300);
-            levelElement.style.color="#ff0000";
+            levelElement.style.color = "#ff0000";
             break;
         case score < 1000:
             level = 'Level 6';
             spawnDivEveryTimout(200);
-            levelElement.style.color="#ffb600";
+            levelElement.style.color = "#ffb600";
             break;
         case score < 2000:
             level = 'Level 7';
             spawnDivEveryTimout(100);
-            levelElement.style.color="#ff0000";
+            levelElement.style.color = "#ff0000";
             break;
         case score < 3000:
             level = 'Level 8';
             spawnDivEveryTimout(50);
-            levelElement.style.color="#ffb600";
+            levelElement.style.color = "#ffb600";
             break;
     }
 }
 
 
-///////////
+///////////// Game over
+checkEnemyPosition();
+
 function checkEnemyPosition() {
     const enemyDiv = document.querySelector(".enemy");
     if (enemyDiv) {
@@ -174,8 +152,13 @@ function checkEnemyPosition() {
             Math.abs(enemyRect.left + enemyRect.width / 2 - viewportCenterX) < 50 &&
             Math.abs(enemyRect.top + enemyRect.height / 2 - viewportCenterY) < 50
         ) {
-            // Game over
             console.log("Game Over");
+            clearTimeout(spawner);
+
+            // if in fullscreen then exit
+            if (document.fullscreenElement) {
+                exitFullscreen();
+            }
 
             start.style.display = "none";
             game.style.display = "none";
@@ -187,5 +170,3 @@ function checkEnemyPosition() {
     requestAnimationFrame(checkEnemyPosition);
 }
 
-// Start checking enemy position
-checkEnemyPosition();

@@ -3,7 +3,6 @@ let game = document.getElementById("game");
 let failed = document.getElementById("failed");
 let btnPlay = document.getElementById("btnPlay");
 let btnRestart = document.getElementById(`btnRestart`);
-let btnBackToMenu = document.getElementById(`btnBackToMenu`);
 
 // begin
 start.style.display = "block";
@@ -23,3 +22,40 @@ btnPlay.addEventListener("click", function () {
 btnRestart.addEventListener("click", function () {
     location.reload();
 });
+
+
+//////////////////////////////
+
+// fullscreen
+const elementToFullscreen = document.documentElement;
+
+btnPlay.addEventListener("click", enterFullscreen);
+
+function enterFullscreen() {
+    if (elementToFullscreen.requestFullscreen) {
+        elementToFullscreen.requestFullscreen();
+    } else if (elementToFullscreen.mozRequestFullScreen) {
+        elementToFullscreen.mozRequestFullScreen();
+    } else if (elementToFullscreen.webkitRequestFullscreen) {
+        elementToFullscreen.webkitRequestFullscreen();
+    } else if (elementToFullscreen.msRequestFullscreen) {
+        elementToFullscreen.msRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
+
+/*// Disable the right-click context menu
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});*/
