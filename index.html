@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 </head>
 <body>
 <section id="start">
-    <div>
-        <h1> Start </h1>
-        <button id="btnPlay">Play</button>
+    <div class="container">
+        <img id="Title" src="assets/images/Title.png">
+        <button id="btnPlay" class="horror-button">Fight</button>
     </div>
 </section>
 
@@ -20,7 +23,7 @@
     <div class="target"></div>
 
     <div id="status">
-        <h4 ><span style="font-weight: bolder ; color: #ff4300;" id="level">Level 1</span></h4>
+        <h4><span style="font-weight: bolder ; color: #ff4300;" id="level">Level 1</span></h4>
         <h4 style="color: #ef9a44">Kills: <span id="score">0</span></h4>
     </div>
 </section>
@@ -28,7 +31,7 @@
 <section id="failed">
     <div>
         <h1> Failed </h1>
-        <button id="btnRestart">Try again</button>
+        <button id="btnRestart" class="horror-button">Try again</button>
     </div>
 </section>
 

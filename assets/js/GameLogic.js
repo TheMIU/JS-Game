@@ -56,7 +56,7 @@ class Enemy {
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        const xValues = [0, viewportWidth - 100];
+        const xValues = [0, viewportWidth - 140];
         const yValues = [0, viewportHeight - 100];
 
         let randomIndexX = Math.floor(Math.random() * xValues.length);
@@ -157,8 +157,8 @@ function checkEnemyPosition() {
 
         // Check if the enemy div's center is within a certain range of the viewport center
         if (
-            Math.abs(enemyRect.left + enemyRect.width / 2 - viewportCenterX) < 50 &&
-            Math.abs(enemyRect.top + enemyRect.height / 2 - viewportCenterY) < 50
+            Math.abs(enemyRect.left + enemyRect.width / 2 - viewportCenterX) < 140 &&
+            Math.abs(enemyRect.top + enemyRect.height / 2 - viewportCenterY) < 100
         ) {
             console.log("Game Over");
             stopBgMusic();
