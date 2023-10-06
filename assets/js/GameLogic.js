@@ -90,6 +90,7 @@ function updateStatus() {
     updateLevel();
     scoreElement.textContent = String(score);
     levelElement.textContent = level;
+    levelSoundsPlay(level);
 }
 
 function updateLevel() {
@@ -155,6 +156,7 @@ function checkEnemyPosition() {
         ) {
             console.log("Game Over");
             stopBgMusic();
+            gameOverSound();
             clearTimeout(spawner);
 
             // if in fullscreen then exit
