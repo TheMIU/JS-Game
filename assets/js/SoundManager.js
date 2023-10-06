@@ -61,6 +61,7 @@ function levelSoundsPlay(level) {
 
     if (audioToPlay) {
         audioToPlay.pause();
+        audioToPlay.volume = 0.2;
         audioToPlay.play();
     }
 }

@@ -37,9 +37,15 @@ class Enemy {
         // Delete div if mouse hovered
         div.addEventListener("mouseover", () => {
             playRandomGhostSound();
-            this.preview.remove();
-            score++;
-            updateStatus();
+
+            div.classList.add("faded-out");
+
+            // Delete div after animation finished
+            div.addEventListener("transitionend", () => {
+                div.remove();
+                score++;
+                updateStatus();
+            });
         });
 
         updateStatus();
