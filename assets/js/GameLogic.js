@@ -1,5 +1,6 @@
 ///////////////////////////////////////////
 const enemyContainer = document.getElementById("enemyContainer");
+let result = document.getElementById("result");
 
 //spawn a new div every 'timeout' second
 let spawner;
@@ -161,6 +162,7 @@ function checkEnemyPosition() {
             Math.abs(enemyRect.top + enemyRect.height / 2 - viewportCenterY) < 100
         ) {
             console.log("Game Over");
+            result.innerText = "You killed " + score + " Ghosts";
             stopBgMusic();
             gameOverSound();
             clearTimeout(spawner);

@@ -9,22 +9,31 @@ button {
 }
 
 /*/////////////////////////////*/
-#start {
+/*
+#start, #failed {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
+*/
 
 .container {
     text-align: center;
 }
 
-#Title {
-    width: 60%;
+#Title, #GhostGirl {
     height: auto;
     display: block;
     margin: 50px auto;
+}
+
+#GhostGirl {
+    width: 20%;
+}
+
+#Title {
+    width: 60%;
 }
 
 /*/////////////////////////////*/
@@ -100,7 +109,7 @@ body {
 /*status bar*/
 #status {
     user-select: none;
-    //background-color: rgba(0, 0, 0, 0.89);
+/ / background-color: rgba(0, 0, 0, 0.89);
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
 
     position: absolute;
